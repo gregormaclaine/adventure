@@ -11,8 +11,8 @@ var dog = {
 var mapName = "stepan.json";
 
 var levels = {
-  "First": ["Gregor's Austin.json", "stepan.json", "gregor.json"],
-  "Gregor": ["adam.json", "gregor.json"]
+  "First": ["austin.json", "stepan.json", "adam.json"],
+  "Gregor": ["gregor.json", "Gregor's Keys.json"]
 };
 var level_names = Object.keys(levels);
 var currentLevel = "";
