@@ -13,7 +13,8 @@ var mapName = "stepan.json";
 var levels = {
   "First": ["austin.json", "stepan.json", "adam.json"],
   "Gregor": ["gregor.json", "Gregor's Keys.json"],
-  "Locky": ["locky2.json", "locky invisimaze.json"]
+  "Locky": ["locky2.json", "locky invisimaze.json"],
+  "Alan": ["alan.json"]
 };
 var level_names = Object.keys(levels);
 var currentLevel = "";
