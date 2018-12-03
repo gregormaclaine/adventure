@@ -9,6 +9,7 @@ let imageList = {
   "lock": "img/lock.png",
   "key": "img/key.png",
   "coin": "img/coin.png",
+  "cross": "img/cross.png",
   "trophy": "img/trophy.png",
   "teleporter": "img/teleporter.png"
 };
@@ -17,7 +18,7 @@ var images = {};
 
 let imageNames = Object.keys(imageList);
 
-let nonStandableBlocks = ["brick", "lock"];
+let nonStandableBlocks = ["brick", "lock", "cross"];
 
 function grid_loop(grid, func) {
   for (var x = 0; x < grid.length; x++) {
