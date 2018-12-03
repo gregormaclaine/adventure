@@ -28,7 +28,9 @@ var grid;
 var menu = true;
 
 function drawTile(imageName, x, y) {
-  image(images[imageName], 50 * x, 50 * y, 50, 50)
+  if (imageName !== "cross") {
+    image(images[imageName], 50 * x, 50 * y, 50, 50)
+  }
 };
 
 function standableBlock(x, y) {
