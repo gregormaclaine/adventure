@@ -14,7 +14,8 @@ var levels = {
   "First": ["austin.json", "stepan.json", "adam.json"],
   "Gregor": ["gregor.json", "Gregor's Keys.json"],
   "Locky": ["locky2.json", "locky invisimaze.json"],
-  "Alan": ["alan.json"]
+  "Alan": ["alan.json"],
+  "Just for Freddie :)": ["freddie.json"]
 };
 var level_names = Object.keys(levels);
 var currentLevel = "";
