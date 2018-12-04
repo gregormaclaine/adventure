@@ -10,6 +10,7 @@ var dog = {
 var levelInfo;
 var levels;
 var level_names;
+var level_rects = [];
 var currentLevel = "";
 var currentMapIndex = 0;
 
@@ -118,15 +119,11 @@ function keyPressed() {
 };
 
 function mousePressed() {
-  if (screen === "menu" && mouseX >= width * 0.2 && mouseX < width * 0.8 && mouseY >= height * 0.35 - 50 && mouseY < height) {
-    //////////////
-    for (var i = 0; i < level_names.length; i++) {
-      var center = (height * 0.35) + (120 * i);
-      if (mouseY > center - 50 && mouseY < center + 50) {
-
+  if (screen === "menu") {
+    for (let i = 0; i < level_rects.length; i++) {
+      if (level_rects[i].contains(mouseX, mouseY)) {
         currentLevel = level_names[i];
         currentMapIndex = 0;
-
         noLoop();
         loadJSON("maps/" + levels[currentLevel][currentMapIndex], loadMap);
         screen = "game";
@@ -144,6 +141,13 @@ function preload() {
 
 function setup() {
   createCanvas(xtiles * 50, ytiles * 50);
+
+  for (var i = 0; i < level_names.length; i++) {
+    let x = width * 0.2;
+    let y = (height * 0.35 + 120 * i) - 50;
+    let b = new Button(level_names[i], x, y, width * 0.6, 100, 230);
+    level_rects.push(b);
+  };
 };
 
 function loadMap(json) {
@@ -171,18 +175,8 @@ function draw() {
       fill(0);
       text("Top Hat Adventures", width / 2, height * 0.2);
 
-      rectMode(CENTER);
-      textSize(40);
-      strokeWeight(1);
-
       for (var i = 0; i < level_names.length; i++) {
-        var x = width / 2;
-        var y = height * 0.35 + 120 * i;
-
-        fill(230);
-        rect(x, y, width * 0.6, 100);
-        fill(0);
-        text(level_names[i], x, y);
+        level_rects[i].show();
       };
       break;
 
