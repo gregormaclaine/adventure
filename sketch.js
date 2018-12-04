@@ -32,22 +32,22 @@ function standableBlock(x, y) {
   if (x >= xtiles || y >= ytiles || x < 0 || y < 0) {
     return false;
   }
-  var index = grid[x][y].length - 1
+  var index = grid[x][y].length - 1;
   if (index < 0) {
     if (mapInfo.background === undefined) {
       return false;
-    }
+    };
     return !nonStandableBlocks.includes(mapInfo.background);
-  }
+  };
   topblock = grid[x][y][index];
   return !nonStandableBlocks.includes(topblock);
-}
+};
 
 function delLayer(x, y, img) {
   if (img === undefined) {
-    grid[x][y].pop()
+    grid[x][y].pop();
   } else if (grid[x][y].includes(img)) {
-    grid[x][y].splice(grid[x][y].indexOf(img), 1)
+    grid[x][y].splice(grid[x][y].indexOf(img), 1);
   };
 };
 
@@ -126,8 +126,8 @@ function mousePressed() {
         noLoop();
         loadJSON("maps/" + levels[currentLevel][currentMapIndex], loadMap);
         screen = "game";
-      }
-    }
+      };
+    };
   };
 };
 
@@ -163,7 +163,7 @@ function loadLevels(json) {
   levelInfo = json;
   levels = json.levels;
   level_names = Object.keys(levels);
-}
+};
 
 function draw() {
   switch (screen) {
@@ -204,8 +204,8 @@ function draw() {
           endImage = "trophy";
         } else {
           endImage = "teleporter";
-        }
+        };
         drawTile(endImage, mapInfo.end[0], mapInfo.end[1]);
-      }
-  }
+      };
+  };
 };
