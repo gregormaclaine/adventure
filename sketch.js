@@ -7,14 +7,9 @@ var dog = {
   y: -1
 };
 
-var levels = {
-  "The CREATOR": ["gregor.json", "Gregor's Keys.json"],
-  "Mr Lock(y)": ["locky2.json", "locky3.json", "locky invisimaze.json"],
-  "Al the Pal": ["alan2.json", "alan.json"],
-  "FREDDDDDDDDie": ["freddie.json"],
-  "seb": ["seb.json"]
-};
-var level_names = Object.keys(levels);
+var levelInfo;
+var levels;
+var level_names;
 var currentLevel = "";
 var currentMapIndex = 0;
 
@@ -144,6 +139,7 @@ function preload() {
   for (key in imageList) {
     images[key] = loadImage(imageList[key]);
   };
+  loadJSON("levels.json", loadLevels);
 };
 
 function setup() {
@@ -159,6 +155,12 @@ function loadMap(json) {
   grid = mapInfo.grid;
   loop();
 };
+
+function loadLevels(json) {
+  levelInfo = json;
+  levels = json.levels;
+  level_names = Object.keys(levels);
+}
 
 function draw() {
   switch (screen) {
