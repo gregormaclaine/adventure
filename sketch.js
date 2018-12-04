@@ -7,11 +7,8 @@ var dog = {
   y: -1
 };
 
-//var mapName = "Gregor's Austin.json";
-var mapName = "stepan.json";
-
 var levels = {
-  "First": ["austin.json", "stepan.json", "adam.json"],
+  "Seb": ["seb.json"],
   "Gregor": ["gregor.json", "Gregor's Keys.json"],
   "Locky": ["locky2.json", "locky3.json", "locky invisimaze.json"],
   "Alan": ["alan2.json", "alan.json"],
