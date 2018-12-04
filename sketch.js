@@ -17,7 +17,6 @@ var currentMapIndex = 0;
 var coins = 0;
 let xtiles = 20;
 let ytiles = 20;
-let fps = 60;
 var backgroundImage;
 var mapInfo;
 var grid;
@@ -26,7 +25,7 @@ var screen = "menu";
 function drawTile(imageName, x, y) {
   if (imageName !== "cross") {
     image(images[imageName], 50 * x, 50 * y, 50, 50)
-  }
+  };
 };
 
 function standableBlock(x, y) {

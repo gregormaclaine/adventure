@@ -5,5 +5,15 @@
     "Al the Pal": ["alan2.json", "alan.json"],
     "FREDDDDDDDDie": ["freddie.json"],
     "seb": ["seb.json"]
+  },
+  "people": {
+    "Adam": ["adam.json"],
+    "Alan": ["alan.json", "alan2.json"],
+    "Austin": ["austin.json"],
+    "Freddie": ["freddie.json"],
+    "Gregor (THE CREATOR)": ["gregor.json", "Gregor's Keys.json"],
+    "Locky": ["locky invisimaze.json", "locky2.json", "locky3.json"],
+    "Seb": ["seb.json"],
+    "Stepan": ["stepan.json"]
   }
 }
