@@ -14,6 +14,9 @@ var level_rects = [];
 var currentLevel = "";
 var currentMapIndex = 0;
 
+let menu_button;
+let people_button;
+
 var coins = 0;
 let xtiles = 20;
 let ytiles = 20;
@@ -129,6 +132,11 @@ function mousePressed() {
       };
     };
   };
+  if (menu_button.contains(mouseX, mouseY)) {
+    screen = "menu";
+  } else if (people_button.contains(mouseX, mouseY)) {
+    screen = "people";
+  };
 };
 
 function preload() {
@@ -147,6 +155,9 @@ function setup() {
     let b = new Button(level_names[i], x, y, width * 0.6, 100, 230);
     level_rects.push(b);
   };
+
+  menu_button = new Button("MENU", width * 0.1, 5, width * 0.35, 50, 230);
+  people_button = new Button("PEOPLE", width * 0.55, 5, width * 0.35, 50, 230);
 };
 
 function loadMap(json) {
@@ -174,12 +185,21 @@ function draw() {
       fill(0);
       text("Top Hat Adventures", width / 2, height * 0.2);
 
+      textSize(20);
+      menu_button.show();
+      people_button.show();
+
       for (var i = 0; i < level_names.length; i++) {
+        textSize(40);
         level_rects[i].show();
       };
       break;
 
-    case "search":
+    case "people":
+      background(200);
+      textSize(20);
+      menu_button.show();
+      people_button.show();
       break;
 
     case "game":

@@ -14,7 +14,6 @@ class Button {
 
   show() {
     rectMode(CORNER);
-    textSize(40);
     strokeWeight(1);
     textAlign(CENTER, CENTER);
 
