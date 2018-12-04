@@ -8,11 +8,11 @@ var dog = {
 };
 
 var levels = {
-  "Seb": ["seb.json"],
-  "Gregor": ["gregor.json", "Gregor's Keys.json"],
-  "Locky": ["locky2.json", "locky3.json", "locky invisimaze.json"],
-  "Alan": ["alan2.json", "alan.json"],
-  "Just for Freddie :)": ["freddie.json"]
+  "The CREATOR": ["gregor.json", "Gregor's Keys.json"],
+  "Mr Lock(y)": ["locky2.json", "locky3.json", "locky invisimaze.json"],
+  "Al the Pal": ["alan2.json", "alan.json"],
+  "FREDDDDDDDDie": ["freddie.json"],
+  "seb": ["seb.json"]
 };
 var level_names = Object.keys(levels);
 var currentLevel = "";
@@ -25,7 +25,7 @@ let fps = 60;
 var backgroundImage;
 var mapInfo;
 var grid;
-var menu = true;
+var screen = "menu";
 
 function drawTile(imageName, x, y) {
   if (imageName !== "cross") {
@@ -63,7 +63,7 @@ function delLayer(x, y, img) {
 
 
 function keyPressed() {
-  if ([UP_ARROW, DOWN_ARROW, RIGHT_ARROW, LEFT_ARROW, 87, 83, 68, 65].includes(keyCode) && !menu) {
+  if ([UP_ARROW, DOWN_ARROW, RIGHT_ARROW, LEFT_ARROW, 87, 83, 68, 65].includes(keyCode) && screen === "game") {
     if ((keyCode === UP_ARROW || keyCode === 87) && standableBlock(man.x, man.y - 1)) {
       dog.x = man.x;
       dog.y = man.y;
@@ -90,7 +90,7 @@ function keyPressed() {
     if (man.x === mapInfo.end[0] && man.y === mapInfo.end[1]) {
       currentMapIndex++;
       if (currentMapIndex >= levels[currentLevel].length) {
-        menu = true;
+        screen = "menu";
         return;
       } else {
         noLoop();
@@ -123,7 +123,7 @@ function keyPressed() {
 };
 
 function mousePressed() {
-  if (menu && mouseX >= width * 0.2 && mouseX < width * 0.8 && mouseY >= height * 0.35 - 50 && mouseY < height) {
+  if (screen === "menu" && mouseX >= width * 0.2 && mouseX < width * 0.8 && mouseY >= height * 0.35 - 50 && mouseY < height) {
     //////////////
     for (var i = 0; i < level_names.length; i++) {
       var center = (height * 0.35) + (120 * i);
@@ -134,7 +134,7 @@ function mousePressed() {
 
         noLoop();
         loadJSON("maps/" + levels[currentLevel][currentMapIndex], loadMap);
-        menu = false;
+        screen = "game";
       }
     }
   };
@@ -161,49 +161,56 @@ function loadMap(json) {
 };
 
 function draw() {
-  if (!menu && mapInfo !== undefined) {
-    if (mapInfo.background !== undefined) {
-      grid_loop(grid, function(x, y) {
-        drawTile(mapInfo.background, x, y);
-      });
-    };
-
-    grid_loop(grid, function(x, y) {
-      for (var i = 0; i < grid[x][y].length; i++) {
-        drawTile(grid[x][y][i], x, y);
-      };
-    });
-
-    drawTile("dog", dog.x, dog.y);
-    drawTile("man", man.x, man.y);
-
-    var endImage = ""
-    if (currentMapIndex === levels[currentLevel].length - 1) {
-      endImage = "trophy";
-    } else {
-      endImage = "teleporter";
-    }
-    drawTile(endImage, mapInfo.end[0], mapInfo.end[1]);
-  } else {
-    background(200);
-    textSize(70);
-    textAlign(CENTER, CENTER);
-    fill(0);
-    text("Top Hat Adventures", width / 2, height * 0.2);
-
-    rectMode(CENTER);
-    textSize(40);
-    strokeWeight(1);
-
-    for (var i = 0; i < level_names.length; i++) {
-      var x = width / 2;
-      var y = height * 0.35 + 120 * i;
-
-      fill(230);
-      rect(x, y, width * 0.6, 100);
+  switch (screen) {
+    case "menu":
+      background(200);
+      textSize(70);
+      textAlign(CENTER, CENTER);
       fill(0);
-      text(level_names[i], x, y);
+      text("Top Hat Adventures", width / 2, height * 0.2);
 
-    };
-  };
+      rectMode(CENTER);
+      textSize(40);
+      strokeWeight(1);
+
+      for (var i = 0; i < level_names.length; i++) {
+        var x = width / 2;
+        var y = height * 0.35 + 120 * i;
+
+        fill(230);
+        rect(x, y, width * 0.6, 100);
+        fill(0);
+        text(level_names[i], x, y);
+      };
+      break;
+
+    case "search":
+      break;
+
+    case "game":
+      if (mapInfo !== undefined) {
+        if (mapInfo.background !== undefined) {
+          grid_loop(grid, function(x, y) {
+            drawTile(mapInfo.background, x, y);
+          });
+        };
+
+        grid_loop(grid, function(x, y) {
+          for (var i = 0; i < grid[x][y].length; i++) {
+            drawTile(grid[x][y][i], x, y);
+          };
+        });
+
+        drawTile("dog", dog.x, dog.y);
+        drawTile("man", man.x, man.y);
+
+        var endImage = ""
+        if (currentMapIndex === levels[currentLevel].length - 1) {
+          endImage = "trophy";
+        } else {
+          endImage = "teleporter";
+        }
+        drawTile(endImage, mapInfo.end[0], mapInfo.end[1]);
+      }
+  }
 };
