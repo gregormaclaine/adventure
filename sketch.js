@@ -259,9 +259,4 @@ function draw() {
         drawTile(endImage, mapInfo.end[0], mapInfo.end[1]);
       };
   };
-  // push()
-  // strokeWeight(10);
-  // stroke(255, 0, 0);
-  // point(width * 0.075, height * 0.225);
-  // pop()
 };
