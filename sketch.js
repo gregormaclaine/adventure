@@ -7,7 +7,6 @@ var dog = {
   y: -1
 };
 
-var levelInfo;
 var levels;
 var level_names;
 var level_rects = [];
@@ -143,7 +142,7 @@ function preload() {
   for (key in imageList) {
     images[key] = loadImage(imageList[key]);
   };
-  loadJSON("levels.json", loadLevels);
+  loadJSON("info.json", loadInfo);
 };
 
 function setup() {
@@ -170,8 +169,7 @@ function loadMap(json) {
   loop();
 };
 
-function loadLevels(json) {
-  levelInfo = json;
+function loadInfo(json) {
   levels = json.levels;
   level_names = Object.keys(levels);
 };
