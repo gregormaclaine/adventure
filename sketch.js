@@ -7,22 +7,25 @@ var dog = {
   y: -1
 };
 
-var levels;
-var level_names;
-var level_rects = [];
-var currentLevel = "";
-var currentMapIndex = 0;
+let levels;
+let people;
+let level_names;
 
+let people_rects = [];
+let level_rects = [];
 let menu_button;
 let people_button;
 
-var coins = 0;
-let xtiles = 20;
-let ytiles = 20;
-var backgroundImage;
-var mapInfo;
-var grid;
-var screen = "menu";
+let currentLevel = "";
+let currentMapIndex = 0;
+
+let coins = 0;
+const xtiles = 20;
+const ytiles = 20;
+let backgroundImage;
+let mapInfo;
+let grid;
+let screen = "menu";
 
 function drawTile(imageName, x, y) {
   if (imageName !== "cross") {
@@ -125,7 +128,6 @@ function mousePressed() {
       if (level_rects[i].contains(mouseX, mouseY)) {
         currentLevel = level_names[i];
         currentMapIndex = 0;
-        noLoop();
         loadJSON("maps/" + levels[currentLevel][currentMapIndex], loadMap);
         screen = "game";
       };
@@ -139,7 +141,7 @@ function mousePressed() {
 };
 
 function preload() {
-  for (key in imageList) {
+  for (let key in imageList) {
     images[key] = loadImage(imageList[key]);
   };
   loadJSON("info.json", loadInfo);
@@ -157,6 +159,19 @@ function setup() {
 
   menu_button = new Button("MENU", width * 0.1, 5, width * 0.35, 50, 230);
   people_button = new Button("PEOPLE", width * 0.55, 5, width * 0.35, 50, 230);
+
+  for (let i = 0; i < people_names.length; i++) {
+    let name = people_names[i];
+
+    let xi = i % 4;
+    let yi = floor(i / 4);
+
+    let x = width * (0.075 + xi * 0.225);
+    let y = height * (0.225 + yi * 0.25);
+
+    let b = new Image_Button(name, x, y, width * 0.2, height * 0.2, 230, people[name].image);;
+    people_rects.push(b);
+  }
 };
 
 function loadMap(json) {
@@ -172,6 +187,13 @@ function loadMap(json) {
 function loadInfo(json) {
   levels = json.levels;
   level_names = Object.keys(levels);
+  people = json.people;
+  people_names = Object.keys(people);
+
+  for (let i = 0; i < people_names.length; i++) {
+    let name = people_names[i];
+    people[name].image = loadImage(people[name].image_path);
+  };
 };
 
 function draw() {
@@ -195,9 +217,20 @@ function draw() {
 
     case "people":
       background(200);
+
+      textSize(70);
+      textAlign(CENTER, CENTER);
+      fill(0);
+      text("People", width / 2, height * 0.125);
+
       textSize(20);
       menu_button.show();
       people_button.show();
+
+      for (let i = 0; i < people_rects.length; i++) {
+        textSize(40);
+        people_rects[i].show();
+      }
       break;
 
     case "game":
@@ -226,4 +259,9 @@ function draw() {
         drawTile(endImage, mapInfo.end[0], mapInfo.end[1]);
       };
   };
+  // push()
+  // strokeWeight(10);
+  // stroke(255, 0, 0);
+  // point(width * 0.075, height * 0.225);
+  // pop()
 };
