@@ -9,7 +9,7 @@
   "people": {
     "Adam": {
       "image_path": "img/profiles/empty_profile.png",
-      "maps": ["adam.json"]
+      "maps": ["adam.json", "adam2.json"]
     },
     "Alan": {
       "image_path": "img/profiles/empty_profile.png",
@@ -37,7 +37,7 @@
     },
     "Stepan": {
       "image_path": "img/profiles/empty_profile.png",
-      "maps": ["stepan.json"]
+      "maps": ["stepan.json", "stepan2.json"]
     }
   }
 }
