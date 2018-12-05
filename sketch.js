@@ -132,9 +132,9 @@ function mousePressed() {
       };
     };
   };
-  if (menu_button.contains(mouseX, mouseY)) {
+  if (menu_button.contains(mouseX, mouseY) && screen === "people") {
     screen = "menu";
-  } else if (people_button.contains(mouseX, mouseY)) {
+  } else if (people_button.contains(mouseX, mouseY) && screen === "menu") {
     screen = "people";
   };
 };
