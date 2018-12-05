@@ -274,7 +274,7 @@ function draw() {
       textSize(70);
       textAlign(CENTER, CENTER);
       fill(0);
-      text(current_person, width / 2, height * 0.125);
+      text(current_person, width / 2, height * 0.2);
 
       textSize(20);
       menu_button.show();
