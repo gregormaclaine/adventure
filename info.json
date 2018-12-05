@@ -24,7 +24,7 @@
       "maps": ["freddie.json"]
     },
     "THE CREATOR": {
-      "image_path": "img/profiles/empty_profile.png",
+      "image_path": "img/profiles/gregor.jpg",
       "maps": ["gregor.json", "Gregor's Keys.json"]
     },
     "Locky": {

@@ -1,8 +1,8 @@
-var man = {
+let man = {
   x: -1,
   y: -1,
 };
-var dog = {
+let dog = {
   x: -1,
   y: -1
 };
@@ -13,11 +13,13 @@ let level_names;
 
 let people_rects = [];
 let level_rects = [];
+let person_rects = [];
 let menu_button;
 let people_button;
 
 let currentLevel = "";
 let currentMapIndex = 0;
+let current_person = "";
 
 let coins = 0;
 const xtiles = 20;
@@ -37,14 +39,14 @@ function standableBlock(x, y) {
   if (x >= xtiles || y >= ytiles || x < 0 || y < 0) {
     return false;
   }
-  var index = grid[x][y].length - 1;
+  let index = grid[x][y].length - 1;
   if (index < 0) {
     if (mapInfo.background === undefined) {
       return false;
     };
     return !nonStandableBlocks.includes(mapInfo.background);
   };
-  topblock = grid[x][y][index];
+  let topblock = grid[x][y][index];
   return !nonStandableBlocks.includes(topblock);
 };
 
@@ -101,14 +103,14 @@ function keyPressed() {
     if (mapInfo.keys[man.x.toString()] !== undefined) {
       if (mapInfo.keys[man.x.toString()][man.y.toString()] !== undefined) {
         if (grid[man.x][man.y].includes("key")) {
-          var key_colour = mapInfo.keys[man.x.toString()][man.y.toString()];
+          let key_colour = mapInfo.keys[man.x.toString()][man.y.toString()];
 
-          for (var x_string in mapInfo.keys) {
-            for (var y_string in mapInfo.keys[x_string]) {
-              var current_colour = mapInfo.keys[x_string][y_string]
+          for (let x_string in mapInfo.keys) {
+            for (let y_string in mapInfo.keys[x_string]) {
+              let current_colour = mapInfo.keys[x_string][y_string]
               if (current_colour === key_colour) {
-                var x = parseInt(x_string);
-                var y = parseInt(y_string);
+                let x = parseInt(x_string);
+                let y = parseInt(y_string);
                 delLayer(x, y, "key");
                 delLayer(x, y, "lock");
                 delete mapInfo.keys[x_string][y_string];
@@ -128,14 +130,47 @@ function mousePressed() {
       if (level_rects[i].contains(mouseX, mouseY)) {
         currentLevel = level_names[i];
         currentMapIndex = 0;
+        noLoop();
+        loadJSON("maps/" + levels[currentLevel][currentMapIndex], loadMap);
+        screen = "game";
+      };
+    };
+  } else if (screen === "people") {
+    for (let i = 0; i < people_rects.length; i++) {
+      if (people_rects[i].contains(mouseX, mouseY)) {
+        current_person = people_rects[i].text;
+
+        person_rects = [];
+        for (let i = 0; i < people[current_person].maps.length; i++) {
+          let x = width * 0.2;
+          let y = (height * 0.35 + 120 * i) - 50;
+          let name = people[current_person].maps[i].slice(0, -5);
+          let b = new Button(name, x, y, width * 0.6, 100, 230);
+          person_rects.push(b);
+        };
+        screen = "person";
+      };
+    };
+  } else if (screen === "person") {
+    for (let i = 0; i < person_rects.length; i++) {
+      if (person_rects[i].contains(mouseX, mouseY)) {
+        let map_name = person_rects[i].text + ".json";
+        if (levels[map_name] === undefined) {
+          levels[map_name] = [map_name];
+        };
+
+        currentLevel = map_name;
+        currentMapIndex = 0;
+        noLoop();
         loadJSON("maps/" + levels[currentLevel][currentMapIndex], loadMap);
         screen = "game";
       };
     };
   };
-  if (menu_button.contains(mouseX, mouseY) && screen === "people") {
+
+  if (menu_button.contains(mouseX, mouseY) && screen !== "game") {
     screen = "menu";
-  } else if (people_button.contains(mouseX, mouseY) && screen === "menu") {
+  } else if (people_button.contains(mouseX, mouseY) && screen !== "game") {
     screen = "people";
   };
 };
@@ -150,7 +185,7 @@ function preload() {
 function setup() {
   createCanvas(xtiles * 50, ytiles * 50);
 
-  for (var i = 0; i < level_names.length; i++) {
+  for (let i = 0; i < level_names.length; i++) {
     let x = width * 0.2;
     let y = (height * 0.35 + 120 * i) - 50;
     let b = new Button(level_names[i], x, y, width * 0.6, 100, 230);
@@ -209,7 +244,7 @@ function draw() {
       menu_button.show();
       people_button.show();
 
-      for (var i = 0; i < level_names.length; i++) {
+      for (let i = 0; i < level_names.length; i++) {
         textSize(40);
         level_rects[i].show();
       };
@@ -230,7 +265,27 @@ function draw() {
       for (let i = 0; i < people_rects.length; i++) {
         textSize(40);
         people_rects[i].show();
-      }
+      };
+      break;
+
+    case "person":
+      background(200);
+
+      textSize(70);
+      textAlign(CENTER, CENTER);
+      fill(0);
+      text(current_person, width / 2, height * 0.125);
+
+      textSize(20);
+      menu_button.show();
+      people_button.show();
+
+      for (let i = 0; i < level_names.length; i++) {
+        textSize(40);
+        if (person_rects[i] !== undefined) {
+          person_rects[i].show();
+        }
+      };
       break;
 
     case "game":
@@ -242,7 +297,7 @@ function draw() {
         };
 
         grid_loop(grid, function(x, y) {
-          for (var i = 0; i < grid[x][y].length; i++) {
+          for (let i = 0; i < grid[x][y].length; i++) {
             drawTile(grid[x][y][i], x, y);
           };
         });
@@ -250,7 +305,7 @@ function draw() {
         drawTile("dog", dog.x, dog.y);
         drawTile("man", man.x, man.y);
 
-        var endImage = ""
+        let endImage = ""
         if (currentMapIndex === levels[currentLevel].length - 1) {
           endImage = "trophy";
         } else {
