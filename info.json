@@ -8,35 +8,35 @@
   },
   "people": {
     "Adam": {
-      "image_path": "img/empty_profile.png",
+      "image_path": "img/profiles/empty_profile.png",
       "maps": ["adam.json"]
     },
     "Alan": {
-      "image_path": "img/empty_profile.png",
+      "image_path": "img/profiles/empty_profile.png",
       "maps": ["alan.json", "alan2.json"]
     },
     "Austin": {
-      "image_path": "img/empty_profile.png",
+      "image_path": "img/profiles/empty_profile.png",
       "maps": ["austin.json"]
     },
     "Freddie": {
-      "image_path": "img/empty_profile.png",
+      "image_path": "img/profiles/empty_profile.png",
       "maps": ["freddie.json"]
     },
     "THE CREATOR": {
-      "image_path": "img/empty_profile.png",
+      "image_path": "img/profiles/empty_profile.png",
       "maps": ["gregor.json", "Gregor's Keys.json"]
     },
     "Locky": {
-      "image_path": "img/empty_profile.png",
+      "image_path": "img/profiles/empty_profile.png",
       "maps": ["locky invisimaze.json", "locky2.json", "locky3.json"]
     },
     "Seb": {
-      "image_path": "img/empty_profile.png",
+      "image_path": "img/profiles/empty_profile.png",
       "maps": ["seb.json"]
     },
     "Stepan": {
-      "image_path": "img/empty_profile.png",
+      "image_path": "img/profiles/empty_profile.png",
       "maps": ["stepan.json"]
     }
   }
