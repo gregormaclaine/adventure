@@ -8,7 +8,7 @@
   },
   "people": {
     "Adam": {
-      "image_path": "img/profiles/empty_profile.png",
+      "image_path": "img/profiles/adam.png",
       "maps": ["adam.json", "adam2.json"]
     },
     "Alan": {
