@@ -1,7 +1,7 @@
 {
   "levels": {
     "A D A M + stpn :)": ["stepan2.json", "adam2.json"],
-    "Mr Lock(y)": ["locky2.json", "locky3.json", "locky invisimaze.json"],
+    "Mr Lock(y)": ["locky4.json", "locky2.json", "locky3.json", "locky invisimaze.json"],
     "Al the Pal": ["alan2.json", "alan.json"],
     "FREDDDDDDDDie": ["freddie.json"],
     "seb": ["seb.json"]
@@ -28,8 +28,8 @@
       "maps": ["gregor.json", "Gregor's Keys.json"]
     },
     "Locky": {
-      "image_path": "img/profiles/empty_profile.png",
-      "maps": ["locky invisimaze.json", "locky2.json", "locky3.json"]
+      "image_path": "img/profiles/locky.jpg",
+      "maps": ["locky invisimaze.json", "locky2.json", "locky3.json", "locky4.json"]
     },
     "Seb": {
       "image_path": "img/profiles/empty_profile.png",
