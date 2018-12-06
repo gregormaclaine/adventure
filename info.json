@@ -36,7 +36,7 @@
       "maps": ["seb.json"]
     },
     "Stepan": {
-      "image_path": "img/profiles/empty_profile.png",
+      "image_path": "img/profiles/stepan.jpg",
       "maps": ["stepan.json", "stepan2.json"]
     }
   }
