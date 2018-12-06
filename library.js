@@ -10,6 +10,7 @@ let imageList = {
   "key": "img/key.png",
   "coin": "img/coin.png",
   "cross": "img/cross.png",
+  "i-teleporter": "img/inter_teleport.png",
   "trophy": "img/trophy.png",
   "teleporter": "img/teleporter.png"
 };
