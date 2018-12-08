@@ -13,7 +13,7 @@
     },
     "Alan": {
       "image_path": "img/profiles/empty_profile.png",
-      "maps": ["alan.json", "alan2.json"]
+      "maps": ["alan.json", "alan2.json", "alan3.json"]
     },
     "Austin": {
       "image_path": "img/profiles/empty_profile.png",
