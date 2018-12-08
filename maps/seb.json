@@ -15,16 +15,13 @@
   "grid": [
     [
       [
-        "cross",
-        "brick"
+        "cross"
       ],
       [
-        "cross",
-        "brick"
+        "cross"
       ],
       [
-        "cross",
-        "brick"
+        "cross"
       ],
       [
         "grass",
@@ -102,8 +99,7 @@
         "grass"
       ],
       [
-        "cross",
-        "brick"
+        "cross"
       ],
       [
         "grass"
@@ -180,8 +176,7 @@
         "grass"
       ],
       [
-        "cross",
-        "brick"
+        "cross"
       ],
       [
         "grass"
@@ -241,16 +236,10 @@
       ]
     ],
     [
+      [],
+      [],
       [
-        "grass"
-      ],
-      [
-        "cross",
-        "brick"
-      ],
-      [
-        "cross",
-        "brick"
+        "cross"
       ],
       [
         "grass"
@@ -311,15 +300,12 @@
       ]
     ],
     [
+      [],
       [
-        "grass"
+        "cross"
       ],
       [
-        "cross",
-        "brick"
-      ],
-      [
-        "brick"
+        "cross"
       ],
       [
         "grass",
@@ -388,16 +374,9 @@
       ]
     ],
     [
-      [
-        "grass"
-      ],
-      [
-        "cross",
-        "brick"
-      ],
-      [
-        "brick"
-      ],
+      [],
+      [],
+      [],
       [
         "grass"
       ],
@@ -456,14 +435,12 @@
       ]
     ],
     [
+      [],
       [
-        "grass"
+        "cross"
       ],
       [
-        "brick"
-      ],
-      [
-        "brick"
+        "cross"
       ],
       [
         "grass",
@@ -532,9 +509,7 @@
       ]
     ],
     [
-      [
-        "grass"
-      ],
+      [],
       [
         "cross",
         "brick"
