@@ -8,6 +8,8 @@ let man = [-1, -1];
 let dog = [-1, -1];
 let end = [-1, -1];
 
+let tile_options = [];
+
 let grid = new Array(xtiles);
 for (var i = 0; i < xtiles; i++) {
   grid[i] = new Array(ytiles);
@@ -56,22 +58,21 @@ function drawKeyIds() {
 };
 
 function drawTileOptions() {
-  push();
-  translate(xtiles * 50 + 50, 0);
   fill(200);
-  strokeWeight(0);
-  rect(0, 0, 50, ytiles * 50);
-  for (var i = 0; i < imageNames.length - 1; i++) {
-    imageName = imageNames[i];
-    image(images[imageName], 0, 50 * i, 50, 50);
+  strokeWeight(1);
+  rect(xtiles * 50 + 50, 0, 50, ytiles * 50);
+
+  for (let i = 0; i < tile_options.length; i++) {
+    tile_options[i].show();
   }
+
 
   index = imageNames.indexOf(currentBlock);
   noFill();
   stroke(255, 255, 0);
   strokeWeight(7);
-  rect(0, index * 50, 50, 50);
-  pop();
+  rect(xtiles * 50 + 50, index * 50, 50, 50);
+
 }
 
 function drawSettings() {
@@ -138,11 +139,11 @@ function drawKeyMode() {
 }
 
 function handleTileChosen() {
-  let index = floor(mouseY / 50);
-  if (index >= imageNames.length - 1) {
-    return;
-  };
-  currentBlock = imageNames[index];
+  for (let i = 0; i < tile_options.length; i++) {
+    if (tile_options[i].contains(mouseX, mouseY)) {
+      currentBlock = tile_options[i].name;
+    }
+  }
 }
 
 function handleGridPlaceChosen() {
@@ -307,7 +308,7 @@ function mouseClicked() {
 }
 
 function preload() {
-  for (key in imageList) {
+  for (let key in imageList) {
     images[key] = loadImage("../" + imageList[key]);
   };
 };
@@ -322,6 +323,19 @@ function setup() {
   loadButton.mousePressed(loadMap);
   newKeyButton = createButton("Create New Key ID");
   newKeyButton.mousePressed(newKeyId);
+
+
+  for (let i = 0; i < imageNames.length - 1; i++) {
+    let b = new Image_Button(images[imageNames[i]], xtiles * 50 + 50, 50 * i, 50, 50);
+    b.name = imageNames[i];
+    tile_options.push(b);
+  }
+
+  index = imageNames.indexOf(currentBlock);
+  noFill();
+  stroke(255, 255, 0);
+  strokeWeight(7);
+  rect(0, index * 50, 50, 50);
 }
 
 function draw() {

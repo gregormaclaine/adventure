@@ -204,7 +204,7 @@ function setup() {
     let x = width * (0.075 + xi * 0.225);
     let y = height * (0.225 + yi * 0.25);
 
-    let b = new Image_Button(name, x, y, width * 0.2, height * 0.2, 230, people[name].image);;
+    let b = new Image_Caption_Button(name, x, y, width * 0.2, height * 0.2, 230, people[name].image);;
     people_rects.push(b);
   }
 };

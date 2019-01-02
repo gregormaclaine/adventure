@@ -31,7 +31,7 @@ class Button {
   }
 }
 
-class Image_Button extends Button {
+class Image_Caption_Button extends Button {
   constructor(text, x, y, w, h, c, image) {
     super(text, x, y, w, h, c);
     this.image = image;
@@ -52,5 +52,26 @@ class Image_Button extends Button {
     }
 
     text(this.text, this.x + this.w / 2, this.y + this.h * 0.85);
+  }
+}
+
+class Image_Button extends Button {
+  constructor(image, x, y, w, h, c) {
+    super(undefined, x, y, w, h, c);
+    this.image = image;
+  }
+
+  drawRect() {
+    if (this.c === undefined) {
+      image(this.image, this.x, this.y, this.w, this.h);
+    } else {
+      noStroke();
+      fill(this.c);
+      rect(this.x, this.y, this.w, this.h);
+    }
+  }
+
+  show() {
+    this.drawRect();
   }
 }
