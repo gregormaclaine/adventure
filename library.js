@@ -15,15 +15,15 @@ let imageList = {
   "teleporter": "img/teleporter.png"
 };
 
-var images = {};
+let images = {};
 
 let imageNames = Object.keys(imageList);
 
 let nonStandableBlocks = ["brick", "lock", "cross"];
 
 function grid_loop(grid, func) {
-  for (var x = 0; x < grid.length; x++) {
-    for (var y = 0; y < grid[0].length; y++) {
+  for (let x = 0; x < grid.length; x++) {
+    for (let y = 0; y < grid[0].length; y++) {
       func(x, y);
     }
   }

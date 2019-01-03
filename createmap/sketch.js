@@ -1,8 +1,8 @@
-var xtiles = 20;
-var ytiles = 20;
+let xtiles = 20;
+let ytiles = 20;
 let gridLineWidth = 4;
-var currentBlock = "grass";
-var currentKeyID = "none";
+let currentBlock = "grass";
+let currentKeyID = "none";
 
 let man = [-1, -1];
 let dog = [-1, -1];
@@ -11,23 +11,23 @@ let end = [-1, -1];
 let tile_options = [];
 
 let grid = new Array(xtiles);
-for (var i = 0; i < xtiles; i++) {
+for (let i = 0; i < xtiles; i++) {
   grid[i] = new Array(ytiles);
-  for (var j = 0; j < ytiles; j++) {
+  for (let j = 0; j < ytiles; j++) {
     grid[i][j] = new Array();
   }
 };
 
-var settings = {
+let settings = {
   "Background": "none",
   "Drag Mode": 0,
   "Key Mode": 0
 };
 let settingNames = Object.keys(settings);
 
-var key_ids = [];
+key_ids = [];
 // { "1":{"1":"#ff0000","5":"#ff0000"}, ..... }
-var key_positions = {};
+let key_positions = {};
 
 function drawTile(imageName, x, y) {
   image(images[imageName], 50 * x, 50 * y, 50, 50);
@@ -36,10 +36,10 @@ function drawTile(imageName, x, y) {
 function drawGridLines() {
   strokeWeight(2);
   stroke(0);
-  for (var i = 0; i <= xtiles; i++) {
+  for (let i = 0; i <= xtiles; i++) {
     line(i * 50, 0, i * 50, ytiles * 50);
   }
-  for (var i = 0; i <= ytiles; i++) {
+  for (let i = 0; i <= ytiles; i++) {
     line(0, i * 50, xtiles * 50, i * 50);
   }
 }
@@ -47,8 +47,8 @@ function drawGridLines() {
 function drawKeyIds() {
   strokeWeight(1);
   stroke(0);
-  for (var x_string in key_positions) {
-    for (var y_string in key_positions[x_string]) {
+  for (let x_string in key_positions) {
+    for (let y_string in key_positions[x_string]) {
       x = parseInt(x_string) * 50 + 25;
       y = parseInt(y_string) * 50 + 25;
       fill(key_positions[x_string][y_string]);
@@ -86,7 +86,7 @@ function drawSettings() {
 
   textSize(25);
   fill(0);
-  for (var i = 0; i < settingNames.length; i++) {
+  for (let i = 0; i < settingNames.length; i++) {
     settingName = settingNames[i];
     fill(0);
     strokeWeight(1);
@@ -118,17 +118,17 @@ function drawKeyMode() {
 
   image(images["none"], 0, 0, 50, 50);
 
-  for (var i = 0; i < key_ids.length; i++) {
-    var colour = key_ids[i];
+  for (let i = 0; i < key_ids.length; i++) {
+    let colour = key_ids[i];
     noStroke();
     fill(colour);
     rect(i * 50 + 50, 0, 50, 50);
   }
 
   if (currentKeyID === "none") {
-    var index = 0;
+    let index = 0;
   } else {
-    var index = key_ids.indexOf(currentKeyID) + 1;
+    let index = key_ids.indexOf(currentKeyID) + 1;
   }
   noFill();
   stroke(255, 255, 0);
@@ -196,7 +196,7 @@ function handleSettingChosen() {
   if (index >= settingNames.length) {
     return;
   };
-  var setting = settingNames[index];
+  let setting = settingNames[index];
   if (["Background"].includes(setting)) {
     if (!["man", "dog", "trophy", "coin"].includes(currentBlock)) {
       settings[settingNames[index]] = currentBlock;
@@ -223,8 +223,8 @@ function handleKeyIdChosen() {
 };
 
 function clearGrid() {
-  for (var x = 0; x < grid.length; x++) {
-    for (var y = 0; y < grid[0].length; y++) {
+  for (let x = 0; x < grid.length; x++) {
+    for (let y = 0; y < grid[0].length; y++) {
       grid[x][y] = new Array();
     }
   }
@@ -235,7 +235,7 @@ function clearGrid() {
 
 function exportMap() {
   settings["Drag Mode"] = 0;
-  var json = {
+  let json = {
     "background": settings.Background,
     "man": man,
     "dog": dog,
@@ -243,15 +243,15 @@ function exportMap() {
     "grid": grid,
     "keys": key_positions
   };
-  var input = prompt("Name of Map", "map1");
-  var src = input + ".json";
+  let input = prompt("Name of Map", "map1");
+  let src = input + ".json";
   save(json, src);
   alert("Saved");
 }
 
 function loadMap() {
-  var json_text = prompt("Please Paste the JSON in Here");
-  var json = JSON.parse(json_text);
+  let json_text = prompt("Please Paste the JSON in Here");
+  let json = JSON.parse(json_text);
   settings.Background = json.background;
   man = json.man;
   dog = json.dog;
@@ -262,8 +262,8 @@ function loadMap() {
   key_positions = json.keys;
   key_ids = [];
 
-  for (var x in key_positions) {
-    for (var y in key_positions[x]) {
+  for (let x in key_positions) {
+    for (let y in key_positions[x]) {
       if (!key_ids.includes(key_positions[x][y])) {
         key_ids.push(key_positions[x][y]);
       }
@@ -274,8 +274,8 @@ function loadMap() {
 }
 
 function newKeyId() {
-  var user_input = prompt("Please Enter a 6 Character Long Hex Colour Code");
-  var colour_is_ok = /^#[0-9A-F]{6}$/i.test(user_input);
+  let user_input = prompt("Please Enter a 6 Character Long Hex Colour Code");
+  let colour_is_ok = /^#[0-9A-F]{6}$/i.test(user_input);
   if (colour_is_ok) {
     key_ids.push(user_input);
   };
@@ -356,7 +356,7 @@ function draw() {
   }
 
   grid_loop(grid, function(x, y) {
-    for (var i = 0; i < grid[x][y].length; i++) {
+    for (let i = 0; i < grid[x][y].length; i++) {
       drawTile(grid[x][y][i], x, y);
     };
   });
