@@ -4,7 +4,7 @@
     "Mr Lock(y)": ["locky4.json", "locky2.json", "locky3.json", "locky invisimaze.json"],
     "Al the Pal": ["alan2.json", "alan.json"],
     "FREDDDDDDDDie": ["freddie 008.json", "freddie.json"],
-    "seb": ["seb.json"]
+    "VICCY": ["victor.json"]
   },
   "people": {
     "Adam": {
@@ -38,6 +38,10 @@
     "Stepan": {
       "image_path": "img/profiles/stepan.jpg",
       "maps": ["stepan.json", "stepan2.json"]
+    },
+    "Victor": {
+      "image_path": "img/profiles/empty_profile.png",
+      "maps": ["victor.json"]
     }
   }
 }
